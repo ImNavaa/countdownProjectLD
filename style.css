@@ -1,0 +1,76 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    background-color: #f0f0f0; /* Un gris claro como fondo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px; /* Esquinas más redondeadas */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Sombra sutil */
+    text-align: center;
+    width: 90%; /* Para que no ocupe todo el ancho en pantallas grandes */
+    max-width: 400px; /* Ancho máximo para el contenedor */
+}
+
+header h1 {
+    color: #333; /* Texto del encabezado más oscuro */
+    margin-bottom: 5px;
+    font-size: 1.5em;
+}
+
+header p {
+    color: #777;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+}
+
+#countdown {
+    display: flex;
+    gap: 10px; /* Menos espacio entre los segmentos */
+    margin-bottom: 25px;
+    justify-content: center;
+}
+
+.time-segment {
+    background-color: #212121; /* Fondo oscuro para los números */
+    color: #fff; /* Texto blanco para los números */
+    padding: 15px 15px; /* Ajuste del padding */
+    border-radius: 8px;
+    width: 60px; /* Ancho fijo para los segmentos */
+    text-align: center;
+}
+
+.time-segment span {
+    display: block;
+    font-size: 1.8em;
+    font-weight: bold;
+}
+
+.time-segment .label {
+    display: block;
+    font-size: 0.7em;
+    color: #777; /* Etiquetas en gris */
+    margin-top: 5px;
+}
+
+#message {
+    margin-top: 20px;
+    color: #2e7d32; /* Mantenemos el verde por ahora */
+    font-size: 1em;
+}
+
+.hidden {
+    display: none;
+}
+
+footer {
+    margin-top: 25px;
+    color: #777;
+    font-size: 0.8em;
+}
