@@ -1,49 +1,81 @@
 body {
     font-family: sans-serif;
     margin: 0;
-    background-color: #f0f0f0; /* Un gris claro como fondo */
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    transition: background-color 0.5s ease; /* Transición suave para el cambio de tema */
+}
+
+body.day-theme {
+    background-color: #f0f8ff; /* Un tono muy claro de azul (AliceBlue) para el día */
+    color: #333; /* Texto oscuro para el día */
+}
+
+body.night-theme {
+    background-color: #1e272e; /* Un tono oscuro (Casi negro) para la noche */
+    color: #f8f8f2; /* Texto claro para la noche */
 }
 
 .container {
-    background-color: #fff;
+    background-color: #fff; /* Fondo blanco para el contenedor en ambos temas por defecto */
     padding: 30px;
-    border-radius: 12px; /* Esquinas más redondeadas */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Sombra sutil */
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     text-align: center;
-    width: 90%; /* Para que no ocupe todo el ancho en pantallas grandes */
-    max-width: 400px; /* Ancho máximo para el contenedor */
+    width: 90%;
+    max-width: 400px;
+    transition: background-color 0.5s ease, box-shadow 0.5s ease; /* Transición suave para el contenedor */
+}
+
+.night-theme .container {
+    background-color: #2c3840; /* Un tono más oscuro para el contenedor en la noche */
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.08);
 }
 
 header h1 {
-    color: #333; /* Texto del encabezado más oscuro */
+    color: #333; /* Color de día por defecto */
     margin-bottom: 5px;
     font-size: 1.5em;
+    transition: color 0.5s ease;
+}
+
+.night-theme header h1 {
+    color: #f8f8f2; /* Color de noche */
 }
 
 header p {
-    color: #777;
+    color: #777; /* Color de día por defecto */
     margin-bottom: 20px;
     font-size: 0.9em;
+    transition: color 0.5s ease;
+}
+
+.night-theme header p {
+    color: #bbb; /* Color de noche */
 }
 
 #countdown {
     display: flex;
-    gap: 10px; /* Menos espacio entre los segmentos */
+    gap: 10px;
     margin-bottom: 25px;
     justify-content: center;
 }
 
 .time-segment {
-    background-color: #212121; /* Fondo oscuro para los números */
-    color: #fff; /* Texto blanco para los números */
-    padding: 15px 15px; /* Ajuste del padding */
+    background-color: #212121; /* Fondo oscuro por defecto */
+    color: #fff; /* Texto blanco por defecto */
+    padding: 15px 15px;
     border-radius: 8px;
-    width: 60px; /* Ancho fijo para los segmentos */
+    width: 60px;
     text-align: center;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.day-theme .time-segment {
+    background-color: #e3f2fd; /* Fondo claro para el día */
+    color: #1976d2; /* Texto azul para el día */
 }
 
 .time-segment span {
@@ -55,14 +87,24 @@ header p {
 .time-segment .label {
     display: block;
     font-size: 0.7em;
-    color: #777; /* Etiquetas en gris */
+    color: #777; /* Color de día por defecto */
     margin-top: 5px;
+    transition: color 0.5s ease;
+}
+
+.night-theme .time-segment .label {
+    color: #bbb; /* Color de noche */
 }
 
 #message {
     margin-top: 20px;
-    color: #2e7d32; /* Mantenemos el verde por ahora */
+    color: #2e7d32; /* Color de día por defecto */
     font-size: 1em;
+    transition: color 0.5s ease;
+}
+
+.night-theme #message {
+    color: #a5d6a7; /* Color de noche */
 }
 
 .hidden {
@@ -71,6 +113,59 @@ header p {
 
 footer {
     margin-top: 25px;
-    color: #777;
+    color: #777; /* Color de día por defecto */
     font-size: 0.8em;
+    transition: color 0.5s ease;
+}
+
+.night-theme footer {
+    color: #bbb; /* Color de noche */
+}
+
+#theme-toggle-switch {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 30px;
+    background-color: #333;
+    border-radius: 15px;
+    cursor: pointer;
+    z-index: 10;
+    transition: background-color 0.3s ease;
+}
+
+#theme-toggle-switch:hover {
+    opacity: 0.8;
+}
+
+#theme-checkbox {
+    width: 0;
+    height: 0;
+    visibility: hidden;
+}
+
+#theme-toggle-switch label {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    background-color: #eee;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+#theme-checkbox:checked + label {
+    transform: translateX(30px);
+    background-color: #64b5f6; /* Un azul claro para el tema de día */
+}
+
+body.day-theme #theme-toggle-switch {
+    background-color: #bbb;
+}
+
+body.day-theme #theme-checkbox:checked + label {
+    background-color: #fdd835; /* Un amarillo para el tema de día activado */
 }
