@@ -5,32 +5,42 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    transition: background-color 0.5s ease; /* Transición suave para el cambio de tema */
+    transition: background-color 0.5s ease; /* Remove background-image from transition */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 body.day-theme {
     background-color: #f0f8ff; /* Un tono muy claro de azul (AliceBlue) para el día */
-    color: #333; /* Texto oscuro para el día */
+    color: #333;
+    /* background-image: url('dia.jpg'); Eliminamos esta línea */
 }
 
 body.night-theme {
     background-color: #1e272e; /* Un tono oscuro (Casi negro) para la noche */
-    color: #f8f8f2; /* Texto claro para la noche */
+    color: #f8f8f2;
+    /* background-image: url('noche.jpg'); Eliminamos esta línea */
 }
 
 .container {
-    background-color: #fff; /* Fondo blanco para el contenedor en ambos temas por defecto */
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco con transparencia (por defecto y para el día) */
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     text-align: center;
-    width: 90%;
-    max-width: 400px;
+    width: 90%; /* Ajuste para pantallas pequeñas */
+    max-width: 600px; /* Aumentamos el ancho máximo para acomodar los elementos en línea */
     transition: background-color 0.5s ease, box-shadow 0.5s ease; /* Transición suave para el contenedor */
+    margin: 20px; /* Añade un poco de margen en pantallas pequeñas */
+}
+
+body.day-theme .container {
+    background-color: rgba(255, 255, 255, 0.8); /* Aseguramos que sea claro para el día */
 }
 
 .night-theme .container {
-    background-color: #2c3840; /* Un tono más oscuro para el contenedor en la noche */
+    background-color: rgba(44, 56, 64, 0.8); /* Fondo oscuro con transparencia */
     box-shadow: 0 4px 12px rgba(255, 255, 255, 0.08);
 }
 
@@ -61,32 +71,34 @@ header p {
     gap: 10px;
     margin-bottom: 25px;
     justify-content: center;
+    /* flex-wrap: wrap; Eliminamos la propiedad de envolver */
 }
 
 .time-segment {
-    background-color: #212121; /* Fondo oscuro por defecto */
+    background-color: rgba(33, 33, 33, 0.8); /* Fondo oscuro con transparencia */
     color: #fff; /* Texto blanco por defecto */
-    padding: 15px 15px;
+    padding: 15px; /* Reducido el padding para pantallas pequeñas */
     border-radius: 8px;
-    width: 60px;
+    width: auto; /* Ajustamos el ancho automáticamente */
+    min-width: 60px; /* Aseguramos un ancho mínimo */
     text-align: center;
     transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 .day-theme .time-segment {
-    background-color: #e3f2fd; /* Fondo claro para el día */
+    background-color: rgba(227, 242, 253, 0.8); /* Fondo claro con transparencia */
     color: #1976d2; /* Texto azul para el día */
 }
 
 .time-segment span {
     display: block;
-    font-size: 1.8em;
+    font-size: 1.5em; /* Reducido el tamaño de la fuente para pantallas pequeñas */
     font-weight: bold;
 }
 
 .time-segment .label {
     display: block;
-    font-size: 0.7em;
+    font-size: 0.6em; /* Reducido el tamaño de la fuente para pantallas pequeñas */
     color: #777; /* Color de día por defecto */
     margin-top: 5px;
     transition: color 0.5s ease;
@@ -100,6 +112,7 @@ header p {
     margin-top: 20px;
     color: #2e7d32; /* Color de día por defecto */
     font-size: 1em;
+    text-align: center; /* Centrar el mensaje en pantallas pequeñas */
     transition: color 0.5s ease;
 }
 
@@ -115,6 +128,7 @@ footer {
     margin-top: 25px;
     color: #777; /* Color de día por defecto */
     font-size: 0.8em;
+    text-align: center; /* Centrar el footer en pantallas pequeñas */
     transition: color 0.5s ease;
 }
 
@@ -124,12 +138,12 @@ footer {
 
 #theme-toggle-switch {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 60px;
-    height: 30px;
-    background-color: #333;
-    border-radius: 15px;
+    bottom: 15px; /* Ajuste para pantallas pequeñas */
+    right: 15px; /* Ajuste para pantallas pequeñas */
+    width: 50px; /* Reduce el ancho */
+    height: 25px; /* Reduce la altura */
+    background-color: #bbb; /* Fondo claro por defecto (día inactivo) */
+    border-radius: 12.5px; /* Ajusta el radio del borde */
     cursor: pointer;
     z-index: 10;
     transition: background-color 0.3s ease;
@@ -147,25 +161,82 @@ footer {
 
 #theme-toggle-switch label {
     position: absolute;
-    top: 3px;
-    left: 3px;
-    width: 24px;
-    height: 24px;
-    background-color: #eee;
+    top: 2.5px; /* Ajuste de la posición */
+    left: 2.5px; /* Ajuste de la posición */
+    width: 20px; /* Reduce el ancho */
+    height: 20px; /* Reduce la altura */
+    background-color: #fdd835; /* Amarillo claro para el selector (día inactivo) */
     border-radius: 50%;
     cursor: pointer;
     transition: transform 0.3s ease;
 }
 
 #theme-checkbox:checked + label {
-    transform: translateX(30px);
-    background-color: #64b5f6; /* Un azul claro para el tema de día */
+    transform: translateX(25px); /* Ajusta el desplazamiento */
+    background-color: #333; /* Fondo oscuro para el selector (noche activo) */
 }
 
-body.day-theme #theme-toggle-switch {
-    background-color: #bbb;
+/* Media Query para pantallas más pequeñas (móviles) */
+@media (max-width: 600px) {
+    .container {
+        width: 95%;
+        padding: 20px;
+        margin: 10px;
+        border-radius: 10px;
+        max-width: none; /* Elimina el ancho máximo en pantallas pequeñas */
+    }
+
+    header h1 {
+        font-size: 1.3em;
+        margin-bottom: 8px;
+    }
+
+    header p {
+        font-size: 0.9em;
+        margin-bottom: 12px;
+    }
+
+    #countdown {
+        gap: 5px;
+        margin-bottom: 20px;
+    }
+
+    .time-segment {
+        padding: 10px;
+        font-size: 1.2em;
+        min-width: 50px; /* Ajusta el ancho mínimo en pantallas pequeñas */
+    }
+
+    .time-segment span {
+        font-size: 1.5em;
+    }
+
+    .time-segment .label {
+        font-size: 0.7em;
+    }
 }
 
-body.day-theme #theme-checkbox:checked + label {
-    background-color: #fdd835; /* Un amarillo para el tema de día activado */
+/* Opcional: Ajustes para pantallas aún más pequeñas */
+@media (max-width: 320px) {
+    header h1 {
+        font-size: 1.1em;
+    }
+
+    #countdown {
+        gap: 2px; /* Reduce aún más el espacio en pantallas muy pequeñas */
+    }
+
+    .time-segment {
+        padding: 8px;
+        font-size: 1em;
+        min-width: 40px;
+    }
+
+    .time-segment span {
+        font-size: 1.3em;
+    }
+
+    .time-segment .label {
+        font-size: 0.6em;
+    }
 }
