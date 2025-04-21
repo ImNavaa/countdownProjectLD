@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
         "Marzo nos trae la promesa de un gran día.",
         "La primavera florecerá con nuestro encuentro.",
         "Tengo la certeza de que nuestro encuentro no es casualidad.",
-        "Estamos a un paso de hacer realidad este sueño.",
+        "Amo la forma en que mi mundo se expande cuando estás cerca.",
         "La emoción no deja de crecer.",
         "El universo conspiró para que este momento llegue.",
         "Ya casi puedo sentir la magia.",
