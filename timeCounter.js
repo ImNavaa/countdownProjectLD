@@ -6,9 +6,59 @@ document.addEventListener('DOMContentLoaded', function() {
     const secondsElement = document.getElementById('seconds');
     const countdownElement = document.getElementById('countdown');
     const messageElement = document.getElementById('message');
+    const headerParagraph = document.querySelector('header p'); // Seleccionamos el párrafo del header
     const themeSwitch = document.getElementById('theme-toggle-switch');
     const themeCheckbox = document.getElementById('theme-checkbox');
     const body = document.body;
+
+    const frasesDiarias = [
+        "Cada día que pasa nos acerca más a nuestro momento.",
+        "La espera se hace dulce sabiendo que es por ti.",
+        "Contando los días para crear juntos nuevos recuerdos.",
+        "Mi corazón palpita más fuerte con cada día que resta.",
+        "La ilusión crece conforme se acerca el día.",
+        "Este tiempo solo aumenta mi certeza: nuestro encuentro no es casualidad.",
+        "Soñando con el instante en que nuestros caminos se unan.",
+        "La cuenta regresiva está en marcha, ¡y mi emoción también!",
+        "Cada segundo es un paso más hacia ti.",
+        "Abril nos espera con un momento mágico.",
+        "Siento que el destino nos tiene algo hermoso preparado.",
+        "La paciencia tendrá su recompensa muy pronto.",
+        "Imaginando cada detalle de ese día especial.",
+        "La distancia solo hace crecer este sentimiento.",
+        "Estoy ansioso por compartir ese momento contigo.",
+        "La magia está en el aire y se acerca a nosotros.",
+        "Estos días son solo la antesala de algo maravilloso.",
+        "Mi pensamiento constante eres tú, cada día.",
+        "El tiempo vuela cuando se espera algo tan bonito.",
+        "Ya casi podemos escribir juntos un nuevo capítulo.",
+        "La alegría de este encuentro ilumina cada día.",
+        "Febrero nos regalará un instante único.",
+        "Marzo nos trae la promesa de un gran día.",
+        "La primavera florecerá con nuestro encuentro.",
+        "Tengo la certeza de que nuestro encuentro no es casualidad.",
+        "Estamos a un paso de hacer realidad este sueño.",
+        "La emoción no deja de crecer.",
+        "El universo conspiró para que este momento llegue.",
+        "Ya casi puedo sentir la magia.",
+        "Este es el preludio de una hermosa historia.",
+        // Puedes añadir más frases para los días restantes
+    ];
+
+    function updateFraseDiaria() {
+        const now = new Date();
+        const differenceInDays = Math.ceil((targetDate.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
+
+        if (differenceInDays > 0 && differenceInDays <= frasesDiarias.length) {
+            headerParagraph.textContent = frasesDiarias[frasesDiarias.length - differenceInDays];
+        } else if (differenceInDays === 0) {
+            headerParagraph.textContent = "¡Hoy es el día!";
+        } else if (differenceInDays < 0) {
+            headerParagraph.textContent = "Nuestro hermoso momento ya llegó.";
+        } else {
+            headerParagraph.textContent = "Tengo la certeza de que nuestro encuentro no es casualidad"; // Frase por defecto si no hay frase programada
+        }
+    }
 
     function updateCountdown() {
         const now = new Date();
@@ -18,6 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
             clearInterval(intervalId);
             countdownElement.classList.add('hidden');
             messageElement.classList.remove('hidden');
+            headerParagraph.textContent = "Nuestro hermoso momento ya llegó."; // Actualizar frase al llegar la fecha
             return;
         }
 
@@ -30,11 +81,14 @@ document.addEventListener('DOMContentLoaded', function() {
         hoursElement.textContent = hours < 10 ? '0' + hours : hours;
         minutesElement.textContent = minutes < 10 ? '0' + minutes : minutes;
         secondsElement.textContent = seconds < 10 ? '0' + seconds : seconds;
+
+        updateFraseDiaria(); // Actualizar la frase en cada intervalo
     }
 
     const intervalId = setInterval(updateCountdown, 1000);
     messageElement.classList.add('hidden');
     updateCountdown();
+    updateFraseDiaria(); // Llamar la primera vez para mostrar la frase inicial
 
     // Manejo del cambio de tema con el switch
     if (themeSwitch && themeCheckbox && body) {
