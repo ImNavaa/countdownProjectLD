@@ -39,9 +39,9 @@ document.addEventListener('DOMContentLoaded', function() {
         "La emoción no deja de crecer.",
         "Amo la forma en que mi mundo se expande cuando estás cerca.",
         "Tengo la certeza de que nuestro encuentro no es casualidad.",
-        "El universo conspiró para que este momento llegue.",
-        "Ya casi puedo sentir la magia.",
-        "Este es el preludio de una hermosa historia.",
+        "Tengo la certeza de que nuestro encuentro no es casualidad.",
+        "Tengo la certeza de que nuestro encuentro no es casualidad.",
+        "Tengo la certeza de que nuestro encuentro no es casualidad.",
         // Puedes añadir más frases para los días restantes
     ];
 
